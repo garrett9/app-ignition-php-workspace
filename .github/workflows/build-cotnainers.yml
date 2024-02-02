@@ -27,14 +27,14 @@ jobs:
           choco install docker-desktop -y
           # Wait for Docker to start
           Start-Sleep -s 120
-          choco install docker-cli -y
-          docker buildx install
 
       - name: Install Docker (macOS)
         if: matrix.os == 'macos-latest'
         run: |
           brew install docker
           brew install docker-buildx
+          mkdir -p ~/.docker/cli-plugins
+          ln -sfn /usr/local/opt/docker-buildx/bin/docker-buildx ~/.docker/cli-plugins/docker-buildx
 
       - uses: docker/setup-qemu-action@v3
         if: matrix.os == 'ubuntu-latest'
