@@ -34,6 +34,7 @@ jobs:
           brew install docker
 
       - uses: docker/setup-qemu-action@v3
+        if: matrix.os == 'ubuntu-latest'
       - name: Build the Docker image
         env:
           DOCKER_DEFAULT_PLATFORM: ${{ matrix.architecture }}
