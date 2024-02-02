@@ -31,10 +31,10 @@ jobs:
       - name: Install Docker (macOS)
         if: matrix.os == 'macos-latest'
         run: |
-          brew install --cask docker
-          brew install docker-buildx
-          mkdir -p ~/.docker/cli-plugins
-          ln -sfn /usr/local/opt/docker-buildx/bin/docker-buildx ~/.docker/cli-plugins/docker-buildx
+          curl -o Docker.dmg https://desktop.docker.com/mac/main/amd64/Docker.dmg
+          hdiutil attach Docker.dmg
+          /Volumes/Docker/Docker.app/Contents/MacOS/install
+          hdiutil detach /Volumes/Docker
 
       - uses: docker/setup-qemu-action@v3
         if: matrix.os == 'ubuntu-latest'
