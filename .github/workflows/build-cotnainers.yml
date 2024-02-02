@@ -27,7 +27,6 @@ jobs:
           choco install docker-desktop -y
           # Wait for Docker to start
           Start-Sleep -s 120
-          choco install docker-cli -y
 
       - name: Install Docker (macOS)
         if: matrix.os == 'macos-latest'
