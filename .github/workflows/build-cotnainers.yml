@@ -35,6 +35,7 @@ jobs:
           hdiutil attach Docker.dmg
           /Volumes/Docker/Docker.app/Contents/MacOS/install
           hdiutil detach /Volumes/Docker
+          export PATH="$PATH:/Applications/Docker.app/Contents/Resources/bin/"
 
       - uses: docker/setup-qemu-action@v3
         if: matrix.os == 'ubuntu-latest'
