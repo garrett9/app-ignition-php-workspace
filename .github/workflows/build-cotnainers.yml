@@ -52,7 +52,7 @@ jobs:
         env:
           DOCKER_DEFAULT_PLATFORM: ${{ matrix.architecture }}
         run: |
-          docker build ./${{ matrix.version }}/Dockerfile
+          docker build ./${{ matrix.version }}
 
       - name: List Images
         run: docker image inspect --format "{{.ID}} {{.RepoTags}} {{.Architecture}}" $(docker image ls -q)
