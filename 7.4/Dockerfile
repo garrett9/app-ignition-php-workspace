@@ -4,13 +4,9 @@
 #--------------------------------------------------------------------------
 #
 
-FROM phusion/baseimage:focal-1.0.0
-
-LABEL io.laradock.image.authors="Mahm1oud Zalt <mahmoud@zalt.me>"
-LABEL io.laradock.image.authors="Thomas Combe <tcombe@webqam.fr>"
+FROM ubuntu:22.04
 
 ENV DEBIAN_FRONTEND=noninteractive
-RUN locale-gen en_US.UTF-8
 
 ENV LANGUAGE=en_US.UTF-8
 ENV LC_ALL=en_US.UTF-8
@@ -19,7 +15,8 @@ ENV LANG=en_US.UTF-8
 ENV TERM xterm
 
 RUN set -eux \
-    # Add the "PHP 8" ppa
+    # Add the "PHP 7" ppa
+    && apt-get update \
     && apt-get install -y software-properties-common \
     && add-apt-repository -y ppa:ondrej/php \
     #
@@ -33,30 +30,28 @@ RUN set -eux \
     && apt-get upgrade -y \
     && apt-get install -y --allow-downgrades --allow-remove-essential \
         --allow-change-held-packages \
-        php8.3-cli \
-        php8.3-common \
-        php8.3-curl \
-        php8.3-intl \
-        php8.3-xml \
-        php8.3-mbstring \
-        php8.3-mysql \
-        php8.3-pgsql \
-        php8.3-sqlite \
-        php8.3-sqlite3 \
-        php8.3-zip \
-        php8.3-bcmath \
-        php8.3-memcached \
-        php8.3-gd \
-        php8.3-dev \
+        php7.4-cli \
+        php7.4-common \
+        php7.4-curl \
+        php7.4-intl \
+        php7.4-json \
+        php7.4-xml \
+        php7.4-mbstring \
+        php7.4-mysql \
+        php7.4-pgsql \
+        php7.4-sqlite \
+        php7.4-sqlite3 \
+        php7.4-zip \
+        php7.4-bcmath \
+        php7.4-memcached \
+        php7.4-gd \
+        php7.4-dev \
         pkg-config \
         libcurl4-openssl-dev \
         libedit-dev \
         libssl-dev \
         libxml2-dev \
         xz-utils \
-        libsqlite3-dev \
-        rsync \
-        sqlite3 \
         git \
         curl \
         vim \
@@ -71,4 +66,3 @@ RUN set -eux \
     && curl -s http://getcomposer.org/installer | php \
     && echo "export PATH=${PATH}:/var/www/vendor/bin" >> ~/.bashrc \
     && mv composer.phar /usr/local/bin/composer
-    

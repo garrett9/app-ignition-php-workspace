@@ -4,12 +4,7 @@
 #--------------------------------------------------------------------------
 #
 
-FROM phusion/baseimage:focal-1.0.0
-
-LABEL maintainer="Mahmoud Zalt <mahmoud@zalt.me>"
-
-ENV DEBIAN_FRONTEND=noninteractive
-RUN locale-gen en_US.UTF-8
+FROM ubuntu:22.04
 
 ENV LANGUAGE=en_US.UTF-8
 ENV LC_ALL=en_US.UTF-8
@@ -18,7 +13,8 @@ ENV LANG=en_US.UTF-8
 ENV TERM xterm
 
 RUN set -eux \
-    # Add the "PHP 5" ppa
+    # Add the "PHP 8" ppa
+    && apt-get update \
     && apt-get install -y software-properties-common \
     && add-apt-repository -y ppa:ondrej/php \
     #
@@ -32,32 +28,27 @@ RUN set -eux \
     && apt-get upgrade -y \
     && apt-get install -y --allow-downgrades --allow-remove-essential \
         --allow-change-held-packages \
-        php5.6-cli \
-        php5.6-common \
-        php5.6-curl \
-        php5.6-intl \
-        php5.6-json \
-        php5.6-xml \
-        php5.6-mbstring \
-        php5.6-mcrypt \
-        php5.6-mysql \
-        php5.6-pgsql \
-        php5.6-sqlite \
-        php5.6-sqlite3 \
-        php5.6-zip \
-        php5.6-bcmath \
-        php5.6-memcached \
-        php5.6-gd \
-        php5.6-dev \
+        php8.1-cli \
+        php8.1-common \
+        php8.1-curl \
+        php8.1-intl \
+        php8.1-xml \
+        php8.1-mbstring \
+        php8.1-mysql \
+        php8.1-pgsql \
+        php8.1-sqlite \
+        php8.1-sqlite3 \
+        php8.1-zip \
+        php8.1-bcmath \
+        php8.1-memcached \
+        php8.1-gd \
+        php8.1-dev \
         pkg-config \
         libcurl4-openssl-dev \
         libedit-dev \
         libssl-dev \
         libxml2-dev \
         xz-utils \
-        libsqlite3-dev \
-        rsync \
-        sqlite3 \
         git \
         curl \
         vim \

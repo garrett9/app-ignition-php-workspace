@@ -4,13 +4,7 @@
 #--------------------------------------------------------------------------
 #
 
-FROM phusion/baseimage:focal-1.0.0
-
-LABEL io.laradock.image.authors="Mahm1oud Zalt <mahmoud@zalt.me>"
-LABEL io.laradock.image.authors="Thomas Combe <tcombe@webqam.fr>"
-
-ENV DEBIAN_FRONTEND=noninteractive
-RUN locale-gen en_US.UTF-8
+FROM ubuntu:22.04
 
 ENV LANGUAGE=en_US.UTF-8
 ENV LC_ALL=en_US.UTF-8
@@ -20,6 +14,7 @@ ENV TERM xterm
 
 RUN set -eux \
     # Add the "PHP 8" ppa
+    && apt-get update \
     && apt-get install -y software-properties-common \
     && add-apt-repository -y ppa:ondrej/php \
     #
@@ -33,30 +28,27 @@ RUN set -eux \
     && apt-get upgrade -y \
     && apt-get install -y --allow-downgrades --allow-remove-essential \
         --allow-change-held-packages \
-        php8.2-cli \
-        php8.2-common \
-        php8.2-curl \
-        php8.2-intl \
-        php8.2-xml \
-        php8.2-mbstring \
-        php8.2-mysql \
-        php8.2-pgsql \
-        php8.2-sqlite \
-        php8.2-sqlite3 \
-        php8.2-zip \
-        php8.2-bcmath \
-        php8.2-memcached \
-        php8.2-gd \
-        php8.2-dev \
+        php8.0-cli \
+        php8.0-common \
+        php8.0-curl \
+        php8.0-intl \
+        php8.0-xml \
+        php8.0-mbstring \
+        php8.0-mysql \
+        php8.0-pgsql \
+        php8.0-sqlite \
+        php8.0-sqlite3 \
+        php8.0-zip \
+        php8.0-bcmath \
+        php8.0-memcached \
+        php8.0-gd \
+        php8.0-dev \
         pkg-config \
         libcurl4-openssl-dev \
         libedit-dev \
         libssl-dev \
         libxml2-dev \
         xz-utils \
-        libsqlite3-dev \
-        rsync \
-        sqlite3 \
         git \
         curl \
         vim \
@@ -64,6 +56,7 @@ RUN set -eux \
         tree \
         postgresql-client \
     && apt-get clean \
+    && update-alternatives --set php /usr/bin/php8.0 \
     #####################################
     # Composer:
     #####################################
