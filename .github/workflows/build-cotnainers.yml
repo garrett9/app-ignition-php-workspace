@@ -11,7 +11,9 @@ permissions:
 
 jobs:
   build-other:
-    runs-on: ubuntu-latest
+    matrix:
+      runs_on: ['ubuntu-latest', 'windows-latest', 'macos-latest']
+    runs-on: ${{ matrix.runs_on }}
     strategy:
       fail-fast: false
       matrix:
