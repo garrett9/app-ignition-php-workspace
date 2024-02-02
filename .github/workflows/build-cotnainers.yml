@@ -31,11 +31,8 @@ jobs:
       - name: Install Docker (macOS)
         if: matrix.os == 'macos-latest'
         run: |
-          curl -o Docker.dmg https://desktop.docker.com/mac/main/amd64/Docker.dmg
-          hdiutil attach Docker.dmg
-          /Volumes/Docker/Docker.app/Contents/MacOS/install
-          hdiutil detach /Volumes/Docker
-          export PATH="$PATH:/Applications/Docker.app/Contents/Resources/bin/"
+          brew install docker
+          colima start
 
       - uses: docker/setup-qemu-action@v3
         if: matrix.os == 'ubuntu-latest'
