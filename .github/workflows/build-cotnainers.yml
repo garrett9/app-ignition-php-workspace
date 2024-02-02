@@ -20,6 +20,20 @@ jobs:
         os: [ubuntu-latest, windows-latest, macos-latest]
     steps:
       - uses: actions/checkout@v4
+
+      - name: Install Docker (Windows)
+        if: matrix.os == 'windows-latest'
+        run: |
+          choco install docker-desktop -y
+          # Wait for Docker to start
+          Start-Sleep -s 120
+
+      - name: Install Docker (macOS)
+        if: matrix.os == 'macos-latest'
+        run: |
+          brew install docker
+          brew services start docker
+
       - uses: docker/setup-qemu-action@v3
       - name: Build the Docker image
         env:
