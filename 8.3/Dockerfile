@@ -4,13 +4,9 @@
 #--------------------------------------------------------------------------
 #
 
-FROM phusion/baseimage:focal-1.0.0
-
-LABEL io.laradock.image.authors="Mahm1oud Zalt <mahmoud@zalt.me>"
-LABEL io.laradock.image.authors="Thomas Combe <tcombe@webqam.fr>"
+FROM ubuntu:22.04
 
 ENV DEBIAN_FRONTEND=noninteractive
-RUN locale-gen en_US.UTF-8
 
 ENV LANGUAGE=en_US.UTF-8
 ENV LC_ALL=en_US.UTF-8
@@ -20,6 +16,7 @@ ENV TERM xterm
 
 RUN set -eux \
     # Add the "PHP 8" ppa
+    && apt-get update \
     && apt-get install -y software-properties-common \
     && add-apt-repository -y ppa:ondrej/php \
     #
@@ -54,9 +51,6 @@ RUN set -eux \
         libssl-dev \
         libxml2-dev \
         xz-utils \
-        libsqlite3-dev \
-        rsync \
-        sqlite3 \
         git \
         curl \
         vim \

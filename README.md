@@ -1,7 +1,10 @@
-# Laradock's Workspace Base Image
+# AppIgnition's PHP Workspace Base Image
 
-[Contribution Guide](http://laradock.io/contributing/#edit-base-image).
+### Links
 
-[Workspace Docker Hub Repository](https://hub.docker.com/r/laradock/workspace/)
+[AppIgnition](https://app-ignition.com).
 
-[Laradock Github Repository](https://github.com/Laradock/laradock).
+[AppIgnition Github Repository](https://github.com/garrett9/app-ignition-laradock).
+
+### About
+This is the base image for the PHP workspace used in the AppIgnition container repository. It contains Dockerfiles for several different versions of PHP and is well suited for Laravel development. Learn more at [AppIgnition](https://app-ignition.com)
