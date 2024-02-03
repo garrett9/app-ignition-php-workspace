@@ -4,12 +4,9 @@
 #--------------------------------------------------------------------------
 #
 
-FROM phusion/baseimage:focal-1.0.0
-
-LABEL maintainer="Mahmoud Zalt <mahmoud@zalt.me>"
+FROM ubuntu:22.04
 
 ENV DEBIAN_FRONTEND=noninteractive
-RUN locale-gen en_US.UTF-8
 
 ENV LANGUAGE=en_US.UTF-8
 ENV LC_ALL=en_US.UTF-8
@@ -19,6 +16,7 @@ ENV TERM xterm
 
 RUN set -eux \
     # Add the "PHP 7" ppa
+    && apt-get update \
     && apt-get install -y software-properties-common \
     && add-apt-repository -y ppa:ondrej/php \
     #
@@ -32,31 +30,28 @@ RUN set -eux \
     && apt-get upgrade -y \
     && apt-get install -y --allow-downgrades --allow-remove-essential \
         --allow-change-held-packages \
-        php7.2-cli \
-        php7.2-common \
-        php7.2-curl \
-        php7.2-intl \
-        php7.2-json \
-        php7.2-xml \
-        php7.2-mbstring \
-        php7.2-mysql \
-        php7.2-pgsql \
-        php7.2-sqlite \
-        php7.2-sqlite3 \
-        php7.2-zip \
-        php7.2-bcmath \
-        php7.2-memcached \
-        php7.2-gd \
-        php7.2-dev \
+        php7.4-cli \
+        php7.4-common \
+        php7.4-curl \
+        php7.4-intl \
+        php7.4-json \
+        php7.4-xml \
+        php7.4-mbstring \
+        php7.4-mysql \
+        php7.4-pgsql \
+        php7.4-sqlite \
+        php7.4-sqlite3 \
+        php7.4-zip \
+        php7.4-bcmath \
+        php7.4-memcached \
+        php7.4-gd \
+        php7.4-dev \
         pkg-config \
         libcurl4-openssl-dev \
         libedit-dev \
         libssl-dev \
         libxml2-dev \
         xz-utils \
-        libsqlite3-dev \
-        rsync \
-        sqlite3 \
         git \
         curl \
         vim \

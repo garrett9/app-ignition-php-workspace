@@ -4,12 +4,9 @@
 #--------------------------------------------------------------------------
 #
 
-FROM phusion/baseimage:focal-1.0.0
-
-LABEL maintainer="Mahmoud Zalt <mahmoud@zalt.me>"
+FROM ubuntu:22.04
 
 ENV DEBIAN_FRONTEND=noninteractive
-RUN locale-gen en_US.UTF-8
 
 ENV LANGUAGE=en_US.UTF-8
 ENV LC_ALL=en_US.UTF-8
@@ -18,7 +15,8 @@ ENV LANG=en_US.UTF-8
 ENV TERM xterm
 
 RUN set -eux \
-    # Add the "PHP 5" ppa
+    # Add the "PHP 8" ppa
+    && apt-get update \
     && apt-get install -y software-properties-common \
     && add-apt-repository -y ppa:ondrej/php \
     #
@@ -32,32 +30,27 @@ RUN set -eux \
     && apt-get upgrade -y \
     && apt-get install -y --allow-downgrades --allow-remove-essential \
         --allow-change-held-packages \
-        php5.6-cli \
-        php5.6-common \
-        php5.6-curl \
-        php5.6-intl \
-        php5.6-json \
-        php5.6-xml \
-        php5.6-mbstring \
-        php5.6-mcrypt \
-        php5.6-mysql \
-        php5.6-pgsql \
-        php5.6-sqlite \
-        php5.6-sqlite3 \
-        php5.6-zip \
-        php5.6-bcmath \
-        php5.6-memcached \
-        php5.6-gd \
-        php5.6-dev \
+        php8.0-cli \
+        php8.0-common \
+        php8.0-curl \
+        php8.0-intl \
+        php8.0-xml \
+        php8.0-mbstring \
+        php8.0-mysql \
+        php8.0-pgsql \
+        php8.0-sqlite \
+        php8.0-sqlite3 \
+        php8.0-zip \
+        php8.0-bcmath \
+        php8.0-memcached \
+        php8.0-gd \
+        php8.0-dev \
         pkg-config \
         libcurl4-openssl-dev \
         libedit-dev \
         libssl-dev \
         libxml2-dev \
         xz-utils \
-        libsqlite3-dev \
-        rsync \
-        sqlite3 \
         git \
         curl \
         vim \
@@ -65,6 +58,7 @@ RUN set -eux \
         tree \
         postgresql-client \
     && apt-get clean \
+    && update-alternatives --set php /usr/bin/php8.0 \
     #####################################
     # Composer:
     #####################################
