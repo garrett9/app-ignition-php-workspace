@@ -1,8 +1,8 @@
 name: Push Image
 
 on:
-  push:
-    tags: ['v*']
+  release:
+    types: [created]
 
 jobs:
   build:
@@ -48,4 +48,4 @@ jobs:
           file: ${{ matrix.php_version }}/Dockerfile
           platforms: linux/amd64,linux/arm64,linux/386
           push: ${{ (github.repository == 'garrett9/app-ignition-php-workspace') && (github.ref == 'refs/heads/main') }}
-          tags: ${{ steps.meta.outputs.tags }}
+          tags: ${{ github.event.release.tag_name }}
