@@ -19,15 +19,9 @@ jobs:
         uses: docker/metadata-action@v5
         with:
           images:
-            garrett9/app-ignition-php-workspace
+            appignition/php-workspace
           flavor: |
             suffix=-${{ matrix.php_version }}
-          tags: |
-            type=schedule,pattern={{date 'YYYYMMDD'}}
-            type=ref,event=tag
-            type=ref,event=branch            
-            type=semver,pattern={{version}}
-            type=raw,value=latest
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
