@@ -21,7 +21,8 @@ jobs:
           images:
             appignition/php-workspace
           flavor: |
-            suffix=-${{ matrix.php_version }}
+            suffix=-php${{ matrix.php_version }}
+            latest=false
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
